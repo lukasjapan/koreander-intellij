@@ -1,0 +1,21 @@
+<idea-plugin>
+    <id>de.cvguy.kotlin.koreander.intellij</id>
+    <name>Koreander Syntax Highlighter</name>
+    <vendor email="lukas@cvguy.de" url="https://github.com/lukasjapan/koreander">Koreander</vendor>
+
+    <description><![CDATA[
+        Support for the Koreandser Template Engine. [EXPERIMENTAL]
+        Currently only Syntax highlighting is supported.
+    ]]></description>
+
+    <depends>org.jetbrains.kotlin</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="de.cvguy.kotlin.koreander.intellij.KoreanderFileTypeFactory"/>
+        <lang.syntaxHighlighterFactory language="Koreander" implementationClass="de.cvguy.kotlin.koreander.intellij.KoreanderSyntaxHighlighterFactory"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
