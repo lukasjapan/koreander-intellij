@@ -4,14 +4,15 @@
     <vendor email="lukas@cvguy.de" url="https://github.com/lukasjapan/koreander">Koreander</vendor>
 
     <description><![CDATA[
-        Support for the Koreandser Template Engine. [EXPERIMENTAL]
+        Language Support for the Koreander Template Engine.
+
         Currently only Syntax highlighting is supported.
     ]]></description>
 
     <depends>org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileTypeFactory implementation="de.cvguy.kotlin.koreander.intellij.KoreanderFileTypeFactory"/>
+        <fileType implementationClass="de.cvguy.kotlin.koreander.intellij.KoreanderFileType" name="Koreander" language="Koreander" extensions="kor" />
         <lang.syntaxHighlighterFactory language="Koreander" implementationClass="de.cvguy.kotlin.koreander.intellij.KoreanderSyntaxHighlighterFactory"/>
     </extensions>
 

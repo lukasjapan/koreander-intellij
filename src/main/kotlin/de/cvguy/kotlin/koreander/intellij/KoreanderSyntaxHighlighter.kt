@@ -4,7 +4,6 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as HC
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.tree.IElementType
 import org.jetbrains.kotlin.idea.highlighter.KotlinHighlighter
-import de.cvguy.kotlin.koreander.parser.Token.Type as TT
 
 class KoreanderSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getTokenHighlights(type: IElementType) = colorMapping.get(type.toString()) ?: kotlinHighlighter.getTokenHighlights(type)

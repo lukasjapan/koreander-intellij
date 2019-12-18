@@ -8,6 +8,7 @@ import de.cvguy.kotlin.koreander.parser.Token
 import org.jetbrains.kotlin.backend.common.pop
 import org.jetbrains.kotlin.backend.common.push
 import org.jetbrains.kotlin.lexer.KotlinLexer
+import java.lang.Exception
 import de.cvguy.kotlin.koreander.parser.Lexer as KoreanderLexer
 
 class KoreanderLexer : Lexer() {
@@ -89,7 +90,7 @@ class KoreanderLexer : Lexer() {
 
         if(token.originalType == Token.Type.QUOTED_STRING) {
             return parseKotlin(token, -2, { "\"\"${it}\"\"" }, {
-                it.removeAt(0);
+                it.removeAt(0)
                 it.removeAt(it.size - 1)
                 it.add(0, LexedToken(token.offsetStart, token.offsetStart + 1, token.originalType, types.getValue(Token.Type.QUOTED_STRING)))
                 it.add(it.size, LexedToken(token.offsetEnd - 1, token.offsetEnd, token.originalType, types.getValue(Token.Type.QUOTED_STRING)))
@@ -101,7 +102,7 @@ class KoreanderLexer : Lexer() {
         }
 
         if(token.originalType == Token.Type.BRACKET_EXPRESSION) {
-            return parseKotlin(token, 1, { it.drop(1).dropLast(1)}, {
+            return parseKotlin(token, 1, { it.drop(1).dropLast(1) }, {
                 it.add(0, LexedToken(token.offsetStart, token.offsetStart + 1, token.originalType, types.getValue(Token.Type.BRACKET_EXPRESSION)))
                 it.add(it.size, LexedToken(token.offsetEnd - 1, token.offsetEnd, token.originalType, types.getValue(Token.Type.BRACKET_EXPRESSION)))
             })
@@ -113,8 +114,9 @@ class KoreanderLexer : Lexer() {
     private fun parseKotlin(token: LexedToken, d: Int = 0, preProcess: (String) -> String = { it }, postProcess: (MutableList<LexedToken>) -> Unit = { }): List<LexedToken> {
         val input = preProcess(currentBuffer.subSequence(token.offsetStart, token.offsetEnd).toString())
         val tokens = mutableListOf<LexedToken>()
+
         kotlinLexer.start(input)
-        while(kotlinLexer.tokenType != null) {
+        while (kotlinLexer.tokenType != null) {
             val kotlinToken = LexedToken(
                     kotlinLexer.tokenStart + token.offsetStart + d,
                     kotlinLexer.tokenEnd + token.offsetStart + d,
@@ -127,9 +129,9 @@ class KoreanderLexer : Lexer() {
 
         postProcess(tokens)
 
-        while(tokens.last().offsetEnd > token.offsetEnd) {
+        while (tokens.last().offsetEnd > token.offsetEnd) {
             val badToken = tokens.pop()
-            if(badToken.offsetStart < token.offsetEnd) {
+            if (badToken.offsetStart < token.offsetEnd) {
                 tokens.push(badToken.copy(offsetEnd = token.offsetEnd))
             }
         }
