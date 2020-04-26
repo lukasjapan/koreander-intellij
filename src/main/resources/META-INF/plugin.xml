@@ -1,5 +1,6 @@
 <idea-plugin>
     <id>de.cvguy.kotlin.koreander.intellij</id>
+    <version>0.2</version>
     <name>Koreander Syntax Highlighter</name>
     <vendor email="lukas@cvguy.de" url="https://github.com/lukasjapan/koreander">Koreander</vendor>
 
@@ -9,14 +10,11 @@
         Currently only Syntax highlighting is supported.
     ]]></description>
 
+    <depends>com.intellij.modules.lang</depends>
     <depends>org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType implementationClass="de.cvguy.kotlin.koreander.intellij.KoreanderFileType" name="Koreander" language="Koreander" extensions="kor" />
         <lang.syntaxHighlighterFactory language="Koreander" implementationClass="de.cvguy.kotlin.koreander.intellij.KoreanderSyntaxHighlighterFactory"/>
     </extensions>
-
-    <actions>
-        <!-- Add your actions here -->
-    </actions>
 </idea-plugin>
