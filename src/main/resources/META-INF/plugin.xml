@@ -1,7 +1,7 @@
 <idea-plugin>
-    <id>de.cvguy.kotlin.koreander.intellij</id>
+    <id>de.cvguy.kotlin.koreander</id>
     <version>0.2</version>
-    <name>Koreander Syntax Highlighter</name>
+    <name>Koreander Language Support</name>
     <vendor email="lukas@cvguy.de" url="https://github.com/lukasjapan/koreander">Koreander</vendor>
 
     <description><![CDATA[
